@@ -28,7 +28,7 @@ class _LauncherState extends State<Launcher> with TickerProviderStateMixin {
     );
     _animation = Tween<double>(begin: 0.0, end: 0.8).animate(_controller);
     _controller.forward();
-   // startTime();
+    startTime();
   }
 
   @override
@@ -63,14 +63,14 @@ class _LauncherState extends State<Launcher> with TickerProviderStateMixin {
                 //     BoxDecoration(border: Border.all(color: Colors.white)),
                 child: FadeTransition(
                   opacity: _animation,
-                  child: Image.asset('assets/logo-white.png',height:height*0.1)
+                  child: Image.asset('assets/logo-white.png',height:height*0.15)
                 ),
               ),
             ),
             Container(
               alignment: Alignment(0, 0.9),
               child: Text('@ c r e a t e d b y Q w e k u',
-                  style: TextStyle(color:Colors.white,fontSize:12)),
+                  style: TextStyle(color:Colors.white,fontSize:14)),
             ),
             Positioned(
               bottom:height*0.05,

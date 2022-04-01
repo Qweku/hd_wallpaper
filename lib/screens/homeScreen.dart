@@ -10,6 +10,7 @@ import 'package:hd_wallpaper/screens/downloadView.dart';
 import 'package:hd_wallpaper/screens/favourite.dart';
 import 'package:hd_wallpaper/screens/gridWidget.dart';
 import 'package:hd_wallpaper/screens/searchView.dart';
+import 'package:liquid_pull_to_refresh/liquid_pull_to_refresh.dart';
 
 import '../components/bottomNav.dart';
 
@@ -84,7 +85,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   void initState() {
     connectivity();
-    
+
     super.initState();
   }
 
@@ -131,62 +132,69 @@ class _HomeScreenState extends State<HomeScreen> {
           body: GetBuilder<HomeController>(
               init: HomeController(),
               builder: (controller) {
-                return TabBarView(
-                  physics: const BouncingScrollPhysics(),
-                  children: [
-                    !connected
-                            ? Center(
-                                child: Image.asset(
-                                'assets/no_signal.png',
-                                height: height * 0.07,
-                              ))
-                            : 
-                    controller.state
-                        ? Center(
-                            child: CircularProgressIndicator(
-                                color: theme.primaryColor),
-                          )
-                        : GridWidget(
-                                isLoading: controller.bottomState,
-                                scrollController:
-                                    controller.todayScrollController,
-                                wallpapers: controller.todaysList,
-                              ),
-                    controller.state
-                        ? Center(
-                            child: CircularProgressIndicator(
-                                color: theme.primaryColor),
-                          )
-                        : controller.state
-                            ? Center(
-                                child: Image.asset(
-                                'assets/no_signal.png',
-                                height: height * 0.07,
-                              ))
-                            : GridWidget(
-                                isLoading: controller.bottomState,
-                                scrollController:
-                                    controller.popularScrollController,
-                                wallpapers: controller.popularList,
-                              ),
-                    controller.state
-                        ? Center(
-                            child: CircularProgressIndicator(
-                                color: theme.primaryColor),
-                          )
-                        : controller.state
-                            ? Center(
-                                child: Image.asset(
-                                'assets/no_signal.png',
-                                height: height * 0.07,
-                              ))
-                            : GridWidget(
-                                isLoading: controller.bottomState,
-                                scrollController:
-                                    controller.oldestScrollController,
-                                wallpapers: controller.oldestList,
-                              )
-                  ],
+                return LiquidPullToRefresh(
+                  onRefresh: () async {
+                    connectivity();
+                    
+                    return await Future.delayed(Duration(seconds: 4));
+                  },
+                  color: theme.primaryColorDark,
+                  child: TabBarView(
+                    physics: const BouncingScrollPhysics(),
+                    children: [
+                      !connected
+                          ? Center(
+                              child: Image.asset(
+                              'assets/no_signal.png',
+                              height: height * 0.07,
+                            ))
+                          : controller.state
+                              ? Center(
+                                  child: CircularProgressIndicator(
+                                      color: theme.primaryColor),
+                                )
+                              : GridWidget(
+                                  isLoading: controller.bottomState,
+                                  scrollController:
+                                      controller.todayScrollController,
+                                  wallpapers: controller.todaysList,
+                                ),
+                      controller.state
+                          ? Center(
+                              child: CircularProgressIndicator(
+                                  color: theme.primaryColor),
+                            )
+                          : controller.state
+                              ? Center(
+                                  child: Image.asset(
+                                  'assets/no_signal.png',
+                                  height: height * 0.07,
+                                ))
+                              : GridWidget(
+                                  isLoading: controller.bottomState,
+                                  scrollController:
+                                      controller.popularScrollController,
+                                  wallpapers: controller.popularList,
+                                ),
+                      controller.state
+                          ? Center(
+                              child: CircularProgressIndicator(
+                                  color: theme.primaryColor),
+                            )
+                          : controller.state
+                              ? Center(
+                                  child: Image.asset(
+                                  'assets/no_signal.png',
+                                  height: height * 0.07,
+                                ))
+                              : GridWidget(
+                                  isLoading: controller.bottomState,
+                                  scrollController:
+                                      controller.oldestScrollController,
+                                  wallpapers: controller.oldestList,
+                                )
+                    ],
+                  ),
                 );
               }),
         ),
