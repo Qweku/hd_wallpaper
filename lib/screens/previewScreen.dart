@@ -57,7 +57,7 @@ class PreviewScreen extends StatelessWidget {
                         isDownloadView
                             ? Container()
                             : ButtonWidget(
-                              isDownloadView: false,
+                                isDownloadView: false,
                                 onTap: () {
                                   controller.downloadWallpaper(
                                       wallpaper.urls.regular);
@@ -68,7 +68,7 @@ class PreviewScreen extends StatelessWidget {
                                 backgroundColor: theme.primaryColor,
                                 icon: Icons.file_download_outlined,
                               ),
-                         ButtonWidget(
+                        ButtonWidget(
                           isDownloadView: false,
                           onTap: () {
                             showModalBottomSheet(
@@ -104,9 +104,10 @@ class PreviewScreen extends StatelessWidget {
                                             BottomSheetButton(
                                                 onTap: () {
                                                   controller.setOnHomeScreen(
-                                                    wallpaper.urls.regular,wallpaper.urls.regular,
+                                                    wallpaper.urls.regular,
+                                                    wallpaper.urls.regular,
                                                     isDownloadView,
-                                                      );
+                                                  );
                                                   Get.back();
                                                 },
                                                 wallpaper: wallpaper,
@@ -116,8 +117,10 @@ class PreviewScreen extends StatelessWidget {
                                             BottomSheetButton(
                                                 onTap: () {
                                                   controller.setOnLockScreen(
-                                                      wallpaper.urls.regular,wallpaper.urls.regular,
-                                                    isDownloadView,);
+                                                    wallpaper.urls.regular,
+                                                    wallpaper.urls.regular,
+                                                    isDownloadView,
+                                                  );
                                                   Get.back();
                                                 },
                                                 wallpaper: wallpaper,
@@ -127,8 +130,10 @@ class PreviewScreen extends StatelessWidget {
                                             BottomSheetButton(
                                                 onTap: () {
                                                   controller.setOnBothScreen(
-                                                      wallpaper.urls.regular,wallpaper.urls.regular,
-                                                    isDownloadView,);
+                                                    wallpaper.urls.regular,
+                                                    wallpaper.urls.regular,
+                                                    isDownloadView,
+                                                  );
                                                   Get.back();
                                                 },
                                                 wallpaper: wallpaper,
@@ -150,7 +155,6 @@ class PreviewScreen extends StatelessWidget {
                           backgroundColor: theme.primaryColor,
                           theme: theme,
                         ),
-                   
                         isDownloadView
                             ? Container()
                             : GetBuilder<FavouriteController>(
@@ -164,9 +168,10 @@ class PreviewScreen extends StatelessWidget {
                                 },
                                 builder: (controller) {
                                   return ButtonWidget(
-                                    isDownloadView: false,
+                                      isDownloadView: false,
                                       onTap: () {
                                         controller.favouriteToggler(wallpaper);
+                                        print("PRINTED "+wallpaper.urls.regular);
                                       },
                                       theme: theme,
                                       label: 'Like',
@@ -176,7 +181,7 @@ class PreviewScreen extends StatelessWidget {
                                           ? Icons.favorite
                                           : Icons.favorite_border);
                                 }),
-                          ],
+                      ],
                     );
                   })
             ],
@@ -243,7 +248,8 @@ class ButtonWidget extends StatelessWidget {
     this.onTap,
     this.backgroundColor,
     this.iconColor,
-    this.label, required this.isDownloadView,
+    this.label,
+    required this.isDownloadView,
   }) : super(key: key);
 
   final ThemeData theme;

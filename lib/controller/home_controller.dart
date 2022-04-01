@@ -112,16 +112,35 @@ class HomeController extends BaseController {
     setState(false);
   }
 
+  //===================Search List=====================
+
+  Rx<List<Wallpaper>> foundWallpaper = Rx<List<Wallpaper>>([]);
+
   @override
   void onInit() {
     getAllData();
     loadMoreData();
     loadMoreDataPopular();
     loadMoreDataOldest();
+    foundWallpaper.value = todaysList;
     super.onInit();
   }
 
-  // @override
+  @override
+  void filterWallpaper(String wallpaperTitle) {
+    List<Wallpaper> results = [];
+    if (wallpaperTitle.isEmpty) {
+      results = todaysList;
+    } else {
+      results = todaysList
+          .where((element) => element
+              .toString()
+              .toLowerCase()
+              .contains(wallpaperTitle.toLowerCase()))
+          .toList();
+    }
+    foundWallpaper.value = results;
+  }
   // void onClose() {
   //   todayScrollController.dispose();
   //   popularScrollController.dispose();

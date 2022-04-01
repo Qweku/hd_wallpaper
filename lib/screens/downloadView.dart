@@ -51,7 +51,7 @@ class DownloadGridView extends StatelessWidget {
                 builder: (context, Box<String> box, child) {
                   final List<String> keys = box.keys.cast<String>().toList();
                   return keys.isEmpty
-                      ? const Center(child: Text('No Favourite Wallpapers'))
+                      ? const Center(child: Text('No Downloaded Wallpapers'))
                       : GridView.builder(
                           physics: const BouncingScrollPhysics(),
                           gridDelegate:

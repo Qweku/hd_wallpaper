@@ -2,12 +2,14 @@
 
 import 'dart:io';
 
+import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hd_wallpaper/controller/home_controller.dart';
 import 'package:hd_wallpaper/screens/downloadView.dart';
 import 'package:hd_wallpaper/screens/favourite.dart';
 import 'package:hd_wallpaper/screens/gridWidget.dart';
+import 'package:hd_wallpaper/screens/searchView.dart';
 
 import '../components/bottomNav.dart';
 
@@ -32,9 +34,7 @@ class _MyHomeScreenState extends State<MyHomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
         bottomNavigationBar: BottomNav(onChange: _handleNavigationChange),
-    
-      body: _content);
-
+        body: _content);
   }
 
   void _handleNavigationChange(int index) {
@@ -60,11 +60,37 @@ class _MyHomeScreenState extends State<MyHomeScreen> {
   }
 }
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
 
   @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  bool connected = false;
+  var result;
+  Future<void> connectivity() async {
+    result = await Connectivity().checkConnectivity();
+    if (result == ConnectivityResult.mobile ||
+        result == ConnectivityResult.wifi) {
+      connected = true;
+    } else {
+      connected = false;
+    }
+    print('$connected');
+  }
+
+  @override
+  void initState() {
+    connectivity();
+    
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
+    double height = MediaQuery.of(context).size.height;
     final theme = Theme.of(context);
     return WillPopScope(
       onWillPop: () => _onBackPressed(context),
@@ -81,12 +107,14 @@ class HomeScreen extends StatelessWidget {
             ),
             centerTitle: true,
             elevation: 0,
-            actions: [
-              IconButton(
-                onPressed: () {},
-                icon: Icon(Icons.search, color: theme.primaryColor),
-              )
-            ],
+            // actions: [
+            //   IconButton(
+            //     onPressed: () {
+            //       Get.to(() => SearchView());
+            //     },
+            //     icon: Icon(Icons.search, color: theme.primaryColor),
+            //   )
+            // ],
             bottom: TabBar(
               labelColor: theme.primaryColor,
               //indicatorPadding: EdgeInsets.symmetric(horizontal:50),
@@ -106,36 +134,58 @@ class HomeScreen extends StatelessWidget {
                 return TabBarView(
                   physics: const BouncingScrollPhysics(),
                   children: [
+                    !connected
+                            ? Center(
+                                child: Image.asset(
+                                'assets/no_signal.png',
+                                height: height * 0.07,
+                              ))
+                            : 
                     controller.state
                         ? Center(
                             child: CircularProgressIndicator(
                                 color: theme.primaryColor),
                           )
                         : GridWidget(
-                          isLoading: controller.bottomState,
-                          scrollController: controller.todayScrollController,
-                            wallpapers: controller.todaysList,
-                          ),
+                                isLoading: controller.bottomState,
+                                scrollController:
+                                    controller.todayScrollController,
+                                wallpapers: controller.todaysList,
+                              ),
                     controller.state
                         ? Center(
                             child: CircularProgressIndicator(
                                 color: theme.primaryColor),
                           )
-                        : GridWidget(
-                          isLoading: controller.bottomState,
-                          scrollController: controller.popularScrollController,
-                            wallpapers: controller.popularList,
-                          ),
+                        : controller.state
+                            ? Center(
+                                child: Image.asset(
+                                'assets/no_signal.png',
+                                height: height * 0.07,
+                              ))
+                            : GridWidget(
+                                isLoading: controller.bottomState,
+                                scrollController:
+                                    controller.popularScrollController,
+                                wallpapers: controller.popularList,
+                              ),
                     controller.state
                         ? Center(
                             child: CircularProgressIndicator(
                                 color: theme.primaryColor),
                           )
-                        : GridWidget(
-                          isLoading: controller.bottomState,
-                          scrollController: controller.oldestScrollController,
-                            wallpapers: controller.oldestList,
-                          )
+                        : controller.state
+                            ? Center(
+                                child: Image.asset(
+                                'assets/no_signal.png',
+                                height: height * 0.07,
+                              ))
+                            : GridWidget(
+                                isLoading: controller.bottomState,
+                                scrollController:
+                                    controller.oldestScrollController,
+                                wallpapers: controller.oldestList,
+                              )
                   ],
                 );
               }),

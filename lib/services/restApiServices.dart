@@ -3,8 +3,6 @@ import 'dart:convert';
 import 'package:hd_wallpaper/model/wallpaper.dart';
 import 'package:http/http.dart' as http;
 
-
-
 class RestApiService {
   Future<List<dynamic>> getJsonDataFromApi(String url) async {
     Uri uri = Uri.parse(url);
@@ -21,4 +19,8 @@ class RestApiService {
     }
     return wallpapers;
   }
+
+  // Future<List<Wallpaper>> getWallpapers(String query) async {
+  //   List<dynamic> wlist = await getJsonDataFromApi(query);
+  // }
 }
