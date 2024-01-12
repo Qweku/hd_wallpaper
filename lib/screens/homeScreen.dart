@@ -1,7 +1,3 @@
-// ignore_for_file: prefer_const_constructors
-
-import 'dart:io';
-
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -88,19 +84,21 @@ class _HomeScreenState extends State<HomeScreen> {
     super.initState();
   }
 
+   DateTime? currentBackPressTime;
+
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
     final theme = Theme.of(context);
     return WillPopScope(
-      onWillPop: () => _onBackPressed(context),
+      onWillPop: () => doubleTapToExit(),
       child: DefaultTabController(
         length: 3,
         child: Scaffold(
-          backgroundColor: const Color.fromARGB(255, 19, 15, 19),
+          backgroundColor:  theme.primaryColorDark,
           appBar: AppBar(
             automaticallyImplyLeading: false,
-            backgroundColor: const Color.fromARGB(255, 19, 15, 19),
+            backgroundColor: theme.primaryColorDark,
             title: Text(
               'HD Wallpaper',
               style: theme.textTheme.displayMedium,
@@ -201,29 +199,25 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  Future<bool> _onBackPressed(BuildContext context) async {
-    final theme = Theme.of(context);
-    return (await showDialog<bool>(
-            context: context,
-            builder: (c) => AlertDialog(
-                  backgroundColor: Colors.grey[900],
-                  // title: Text(
-                  //   "Warning",textAlign:TextAlign.center,style:TextStyle(color:Colors.red)
-                  // ),
-                  content: Text("Do you want to quit?",
-                      style: TextStyle(color: Colors.white)),
-                  actions: [
-                    TextButton(
-                        onPressed: () {
-                          exit(0);
-                        },
-                        child:
-                            Text("Yes", style: TextStyle(color: Colors.red))),
-                    TextButton(
-                        onPressed: () => Navigator.pop(c, false),
-                        child: Text("No", style: TextStyle(color: Colors.red)))
-                  ],
-                ))) ??
-        false;
+  Future<bool> doubleTapToExit() {
+    DateTime now = DateTime.now();
+    if (currentBackPressTime == null ||
+        now.difference(currentBackPressTime!) > Duration(seconds: 2)) {
+      currentBackPressTime = now;
+      var theme = Theme.of(context);
+      double width = MediaQuery.of(context).size.width;
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          width: width*0.42,
+            backgroundColor: theme.primaryColor,
+            content: Text('Repeat action to exit',
+                textAlign: TextAlign.center, style: theme.textTheme.bodyMedium),
+            duration: const Duration(seconds: 2),
+            behavior: SnackBarBehavior.floating,
+            shape: const StadiumBorder()),
+      );
+      return Future.value(false);
+    }
+    return Future.value(true);
   }
 }

@@ -53,7 +53,7 @@ class _LauncherState extends State<Launcher> with TickerProviderStateMixin {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
     return Scaffold(
-        backgroundColor: const Color.fromARGB(255, 19, 15, 19),
+        backgroundColor: theme.primaryColorDark,
         body: Stack(
           children: [
             Center(
@@ -63,7 +63,10 @@ class _LauncherState extends State<Launcher> with TickerProviderStateMixin {
                 //     BoxDecoration(border: Border.all(color: Colors.white)),
                 child: FadeTransition(
                   opacity: _animation,
-                  child: Image.asset('assets/images/app_icon.png',height:height*0.15)
+                  child: CircleAvatar(
+                    radius: height*0.05,
+                    backgroundColor: const Color.fromARGB(255, 243, 243, 243),
+                    child: Image.asset('assets/images/app_icon.png',height:height*0.2))
                 ),
               ),
             ),
@@ -82,7 +85,7 @@ class _LauncherState extends State<Launcher> with TickerProviderStateMixin {
                 width: width*0.5,
                 decoration:BoxDecoration(
                   borderRadius:BorderRadius.circular(20),
-                  color:theme.primaryColorDark,
+                  color:theme.primaryColorDark.withOpacity(0.5),
                   boxShadow:[
                     BoxShadow(
                       offset:Offset(0,-4),
@@ -104,7 +107,7 @@ class _LauncherState extends State<Launcher> with TickerProviderStateMixin {
                 width: width*0.5,
                 decoration:BoxDecoration(
                   borderRadius:BorderRadius.circular(20),
-                  color:theme.primaryColorDark,
+                  color:theme.primaryColorDark.withOpacity(0.5),
                   boxShadow:[
                     BoxShadow(
                       offset:Offset(0,4),

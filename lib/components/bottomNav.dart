@@ -35,7 +35,7 @@ class BottomNav extends StatelessWidget {
       onChange: onChange,
       style: FluidNavBarStyle(
           iconBackgroundColor: theme.primaryColorDark,
-          iconUnselectedForegroundColor: Colors.white,
+          iconUnselectedForegroundColor:  theme.primaryColor,
           barBackgroundColor: theme.primaryColorDark),
       scaleFactor: 1.5,
       defaultIndex: 1,

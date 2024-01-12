@@ -30,7 +30,7 @@ class MyApp extends StatelessWidget {
           fontFamily: 'Federo',
           primaryColor: Color.fromARGB(255, 255, 94, 1),
           primaryColorLight: const Color.fromARGB(255, 223, 174, 26),
-          primaryColorDark: const Color.fromARGB(255, 19, 15, 19),
+          primaryColorDark: Color.fromARGB(255, 31, 1, 31),
           textTheme: const TextTheme(
               displayLarge: TextStyle(fontSize: 20, color: Colors.black),
               displayMedium: TextStyle(fontSize: 20, color: Colors.white),
