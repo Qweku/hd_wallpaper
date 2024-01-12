@@ -29,7 +29,7 @@ class _SearchViewState extends State<SearchView> {
         //automaticallyImplyLeading: false,
         backgroundColor: const Color.fromARGB(255, 19, 15, 19),
         title: TextField(
-          style: theme.textTheme.bodyText2!.copyWith(fontSize: 16),
+          style: theme.textTheme.bodyMedium!.copyWith(fontSize: 16),
           onChanged: ((value) => controller.filterWallpaper(value)),
         ),
         actions: [

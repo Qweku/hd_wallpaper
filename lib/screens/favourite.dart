@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hd_wallpaper/controller/favourite_controller.dart';
-import 'package:hd_wallpaper/utils/constants.dart';
-import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
 import '../model/wallpaper.dart';
@@ -21,7 +19,7 @@ class FavouriteView extends StatelessWidget {
         backgroundColor: const Color.fromARGB(255, 19, 15, 19),
         title: Text(
           'Favourite',
-          style: theme.textTheme.headline2,
+          style: theme.textTheme.displayMedium,
         ),
         centerTitle: true,
         elevation: 0,

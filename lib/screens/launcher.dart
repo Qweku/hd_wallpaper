@@ -63,7 +63,7 @@ class _LauncherState extends State<Launcher> with TickerProviderStateMixin {
                 //     BoxDecoration(border: Border.all(color: Colors.white)),
                 child: FadeTransition(
                   opacity: _animation,
-                  child: Image.asset('assets/logo-white.png',height:height*0.15)
+                  child: Image.asset('assets/images/app_icon.png',height:height*0.15)
                 ),
               ),
             ),

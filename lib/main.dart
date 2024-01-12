@@ -27,15 +27,15 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
           primarySwatch: Colors.blue,
-          fontFamily: 'Kaushan',
-          primaryColor: const Color.fromARGB(255, 1, 162, 255),
+          fontFamily: 'Federo',
+          primaryColor: Color.fromARGB(255, 255, 94, 1),
           primaryColorLight: const Color.fromARGB(255, 223, 174, 26),
           primaryColorDark: const Color.fromARGB(255, 19, 15, 19),
           textTheme: const TextTheme(
-              headline1: TextStyle(fontSize: 20, color: Colors.black),
-              headline2: TextStyle(fontSize: 20, color: Colors.white),
-              bodyText1: TextStyle(fontSize: 14, color: Colors.black),
-              bodyText2: TextStyle(fontSize: 14, color: Colors.white))),
+              displayLarge: TextStyle(fontSize: 20, color: Colors.black),
+              displayMedium: TextStyle(fontSize: 20, color: Colors.white),
+              bodyLarge: TextStyle(fontSize: 14, color: Colors.black),
+              bodyMedium: TextStyle(fontSize: 14, color: Colors.white))),
       home: const Launcher(),
     );
   }

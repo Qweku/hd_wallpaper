@@ -94,7 +94,7 @@ class PreviewScreen extends StatelessWidget {
                                               EdgeInsets.all(height * 0.03),
                                           child: Text(
                                             'Set wallpaper as:',
-                                            style: theme.textTheme.headline2,
+                                            style: theme.textTheme.displayMedium,
                                           ),
                                         ),
                                         Row(
@@ -227,7 +227,7 @@ class BottomSheetButton extends StatelessWidget {
           child: Text(
             label!,
             textAlign: TextAlign.center,
-            style: theme.textTheme.bodyText2,
+            style: theme.textTheme.bodyMedium,
           ),
         )
       ]),
@@ -268,7 +268,7 @@ class ButtonWidget extends StatelessWidget {
             child: Icon(icon, color: iconColor),
           ),
           SizedBox(height: height * 0.01),
-          Text(label!, style: theme.textTheme.bodyText2!.copyWith(fontSize: 12))
+          Text(label!, style: theme.textTheme.bodyMedium!.copyWith(fontSize: 12))
         ],
       ),
     );

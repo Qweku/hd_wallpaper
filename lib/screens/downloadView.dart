@@ -5,7 +5,6 @@ import 'package:get/get.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
 import '../controller/download_controller.dart';
-import '../controller/favourite_controller.dart';
 import '../model/urls.dart';
 import '../model/wallpaper.dart';
 import 'previewScreen.dart';
@@ -23,7 +22,7 @@ class DownloadView extends StatelessWidget {
         backgroundColor: const Color.fromARGB(255, 19, 15, 19),
         title: Text(
           'Downloads',
-          style: theme.textTheme.headline2,
+          style: theme.textTheme.displayMedium,
         ),
         centerTitle: true,
         elevation: 0,

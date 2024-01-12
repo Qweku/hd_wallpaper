@@ -53,7 +53,7 @@ class GridWidget extends StatelessWidget {
                         child: wallpapers[index].urls.regular.isEmpty
                             ? Center(
                                 child: Text('Sorry, no wallpapers',
-                                    style: theme.textTheme.bodyText2))
+                                    style: theme.textTheme.bodyMedium))
                             : Hero(
                                 tag: wallpapers[index].urls.regular,
                                 child: Image.network(

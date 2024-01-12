@@ -9,7 +9,6 @@ import 'package:hd_wallpaper/controller/home_controller.dart';
 import 'package:hd_wallpaper/screens/downloadView.dart';
 import 'package:hd_wallpaper/screens/favourite.dart';
 import 'package:hd_wallpaper/screens/gridWidget.dart';
-import 'package:hd_wallpaper/screens/searchView.dart';
 import 'package:liquid_pull_to_refresh/liquid_pull_to_refresh.dart';
 
 import '../components/bottomNav.dart';
@@ -104,7 +103,7 @@ class _HomeScreenState extends State<HomeScreen> {
             backgroundColor: const Color.fromARGB(255, 19, 15, 19),
             title: Text(
               'HD Wallpaper',
-              style: theme.textTheme.headline2,
+              style: theme.textTheme.displayMedium,
             ),
             centerTitle: true,
             elevation: 0,
