@@ -17,9 +17,12 @@ Flutter HD Wallpaper App is your go-to source for stunning wallpapers. Users can
 - Set wallpapers directly from the app
 - User-friendly interface for a seamless experience
 
-## Links
-- [GitHub Repository](https://github.com/your-username/FlutterHDWallpaperApp)
-- [Demo Video](https://your-demo-video-link.com)
+## Walkthrough
+
+
+
+https://github.com/Qweku/hd_wallpaper/assets/79706544/9fa7bc78-80fa-4254-9755-337f90af3db7
+
 
 ## Screenshots
 
